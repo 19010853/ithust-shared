@@ -16,10 +16,11 @@ jobs:
         with:
           node-version: '20.x'
       - run: npm install
+      - run: npm version patch --no-git-tag-version
       - run: npm run build
       - run: |
-          echo @<your-github-username>:https://npm.pkg.github.com/ > build/.npmrc
-          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> build/.npmrc
+          echo "@19010853:https://npm.pkg.github.com/" > build/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> build/.npmrc
       - run: npm publish
         working-directory: ./build
         env:

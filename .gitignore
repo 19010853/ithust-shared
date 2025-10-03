@@ -3,3 +3,14 @@ node_modules
 .DS_Store
 dist
 build
+
+# Security files
+secrets.md
+.npmrc
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
