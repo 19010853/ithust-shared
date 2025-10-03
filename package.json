@@ -39,6 +39,7 @@
   },
   "types": "./src/index.d.ts",
   "dependencies": {
+    "@19010853/ithust-shared": "^0.0.3",
     "@elastic/elasticsearch": "^9.1.1",
     "cloudinary": "^2.7.0",
     "express": "^5.1.0",
