@@ -14,3 +14,14 @@ secrets.md
 # IDE files
 .vscode/
 .idea/
+# Secrets
+secrets.md
+
+# Secrets and auth
+secrets.md
+.npmrc
+server/09-ithust-shared/.npmrc
+
+# Ignore auth files
+.npmrc
+server/09-ithust-shared/.npmrc
