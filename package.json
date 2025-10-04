@@ -3,6 +3,11 @@
   "license": "MIT",
   "main": "index.js",
   "description": "Helpers library for ITHust app",
+  "files": [
+    "build/",
+    "package.json",
+    "README.md"
+  ],
   "engines": {
     "node": ">=18"
   },
