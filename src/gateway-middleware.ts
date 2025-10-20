@@ -15,8 +15,13 @@ export function verifyGatewayRequest(req: Request, _res: Response, next: NextFun
     }
 
     try {
-        const payload: {id: string, iat: number}  = JWT.verify(token, '') as { id: string; iat: number };
-        if (!tokens.includes(payload.id)) {
+        const secret = process.env.GATEWAY_JWT_TOKEN;
+        if (!secret) {
+            throw new NotAuthorizedError('Invalid request', 'verifyGatewayRequest() method: JWT secret not configured');
+        }
+
+        const payload = JWT.verify(token, secret) as unknown as { id: string; iat: number };
+        if (!payload || typeof payload !== 'object' || !payload.id || !tokens.includes(payload.id)) {
             throw new NotAuthorizedError('Invalid request', 'verifyGatewayRequest() method: Request payload is invalid');
         }
     } catch (error) {
