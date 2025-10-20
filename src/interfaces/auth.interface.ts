@@ -58,6 +58,7 @@ export interface IEmailMessageDetails {
   verifyLink?: string;
   resetLink?: string;
   username?: string;
+  otp?: string;
 }
 
 export interface ISignUpPayload {
