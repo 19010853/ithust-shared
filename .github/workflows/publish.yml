@@ -15,7 +15,7 @@ jobs:
           node-version: '22'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@19010853'
-      - run: npm ci
+      - run: npm install
       - run: npm run build
       - run: npm publish
         env:
