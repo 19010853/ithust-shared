@@ -2,26 +2,21 @@ name: Publish
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-      - run: npm install
-      - run: npm version patch --no-git-tag-version
+          node-version: '22'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@19010853'
+      - run: npm ci
       - run: npm run build
-      - run: |
-          echo "@19010853:https://npm.pkg.github.com/" > build/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> build/.npmrc
       - run: npm publish
-        working-directory: ./build
         env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
