@@ -1,4 +1,4 @@
-import amqp, { Channel, Connection } from 'amqplib';
+import amqp, { Channel } from 'amqplib';
 import { Logger } from 'winston';
 
 interface RabbitMQConnectionOptions {
@@ -10,8 +10,8 @@ interface RabbitMQConnectionOptions {
 
 export async function createRabbitMQConnection({ rabbitMQEndpoint, logger, successMessage, errorMessage }: RabbitMQConnectionOptions): Promise<Channel | undefined> {
   try {
-    const connection: Connection = await amqp.connect(rabbitMQEndpoint);
-    const channel: Channel = await connection.createChannel();
+    const connection = await amqp.connect(rabbitMQEndpoint);
+    const channel = await connection.createChannel();
     logger.info(successMessage);
     process.once('SIGINT', async () => {
       await channel.close();
