@@ -82,7 +82,12 @@ export {
   ServerError,
   ErrnoException
 } from './error-handler';
-export { verifyGatewayRequest } from './gateway-middleware';
+export {
+  verifyGatewayRequest,
+  normalizeGatewayTokenHeader,
+  attachCurrentUser,
+  createServiceErrorHandler
+} from './gateway-middleware';
 export { winstonLogger } from './logger';
 export {
   firstLetterToUppercase,
@@ -91,3 +96,12 @@ export {
   isEmail,
   isDataURL
 } from './helpers';
+export { loadEnv, stripInlineComment, parseCsv } from './env';
+export { configureCloudinary } from './cloudinary-config';
+export { connectMongooseDatabase } from './database';
+export { createElasticSearchClient, checkElasticSearchConnection } from './elasticsearch-utils';
+export { createRabbitMQConnection, publishDirectMessage, publishFanoutMessage } from './rabbitmq';
+export { createHealthHandler } from './health';
+export { startElasticApm } from './apm';
+export { createRedisConnection, connectRedisClient, ensureRedisClientOpen } from './redis';
+export type { RedisClient } from './redis';
