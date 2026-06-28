@@ -1,7 +1,10 @@
 import { createClient } from 'redis';
 import { Logger } from 'winston';
 
-export type RedisClient = ReturnType<typeof createClient>;
+// Use 'any' to avoid consumers needing 'redis' as a transitive type dependency.
+// Only gateway-service and gig-service actually use Redis.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type RedisClient = any;
 
 export function createRedisConnection(host: string, logger: Logger): RedisClient {
   const client = createClient({ url: host });
