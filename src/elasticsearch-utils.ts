@@ -10,10 +10,11 @@ interface ElasticConnectionOptions {
   logger: Logger;
   serviceName: string;
   connectingMessage?: string;
+  failureMessage?: string;
   errorMessage: string;
 }
 
-export async function checkElasticSearchConnection({ client, logger, serviceName, connectingMessage, errorMessage }: ElasticConnectionOptions): Promise<void> {
+export async function checkElasticSearchConnection({ client, logger, serviceName, connectingMessage, failureMessage, errorMessage }: ElasticConnectionOptions): Promise<void> {
   let isConnected = false;
   while (!isConnected) {
     try {
@@ -23,7 +24,7 @@ export async function checkElasticSearchConnection({ client, logger, serviceName
       isConnected = true;
     } catch (error) {
       logger.log('error', errorMessage, error);
-      logger.error(`${serviceName} Connection to Elasticsearch failed. Retrying...`);
+      logger.error(failureMessage || `${serviceName} Connection to Elasticsearch failed. Retrying...`);
       await new Promise((resolve) => setTimeout(resolve, 5000));
     }
   }
