@@ -99,7 +99,16 @@ export {
 export { loadEnv, stripInlineComment, parseCsv } from './env';
 export { configureCloudinary } from './cloudinary-config';
 export { connectMongooseDatabase } from './database';
-export { createElasticSearchClient, checkElasticSearchConnection } from './elasticsearch-utils';
+export {
+  createElasticSearchClient,
+  checkElasticSearchConnection,
+  createIndexIfMissing,
+  getDocumentCount,
+  getIndexedDocument,
+  addIndexedDocument,
+  updateIndexedDocument,
+  deleteIndexedDocument
+} from './elasticsearch-utils';
 export { createRabbitMQConnection, publishDirectMessage, publishFanoutMessage } from './rabbitmq';
 export { createHealthHandler } from './health';
 export { startElasticApm } from './apm';
